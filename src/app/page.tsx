@@ -77,7 +77,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        <Button className="bg-primary text-white hover:bg-primary-dark" size="lg" onPress={() => router.push("/services")}>
+        <Button className="hidden md:flex gap-2" size="lg" onPress={() => router.push("/services")}>
           View All Services <ArrowRight size={18} />
         </Button>
       </section>
@@ -110,7 +110,7 @@ export default function HomePage() {
             Choose a service, pick a time slot, and we will take care of the rest.
             Online booking takes less than 2 minutes.
           </p>
-          <Button size="lg" className="bg-white text-primary font-bold hover:bg-gray-100" onPress={() => router.push("/booking")}>
+          <Button size="lg" className="hidden md:flex gap-2" onPress={() => router.push("/booking")}>
             Book an Appointment Now <ArrowRight size={18} />
           </Button>
         </div>

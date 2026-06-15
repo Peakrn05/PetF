@@ -41,7 +41,7 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-4 mb-16">
             <Button
               size="lg"
-              className="bg-primary text-white font-semibold hover:bg-primary-dark"
+              className="border-white/30 text-white hover:bg-white/10"
               onPress={() => router.push("/booking")}
             >
               <CalendarDays size={18} /> Book Appointment

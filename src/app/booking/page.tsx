@@ -223,7 +223,7 @@ function BookingContent() {
 
           {step < 3 ? (
             <Button
-              className="bg-primary text-white hover:bg-primary-dark"
+              className="hidden md:flex gap-2"
               onPress={() => goToStep(step + 1)}
               isDisabled={
                 (step === 0 && !selectedService) ||
@@ -235,7 +235,7 @@ function BookingContent() {
             </Button>
           ) : (
             <Button
-              className="bg-green-600 text-white hover:bg-green-700"
+              className="hidden md:flex gap-2"
               isDisabled={submitting}
               onPress={handleSubmit}
             >

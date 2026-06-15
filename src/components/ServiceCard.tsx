@@ -42,7 +42,7 @@ export default function ServiceCard({ service, onSelect, selected }: Props) {
             Select <ArrowRight size={14} />
           </Button>
         ) : (
-          <Button className="bg-primary text-white hover:bg-primary-dark" size="sm" onPress={() => router.push(`/booking?serviceId=${service.id}`)}>
+          <Button className="hidden md:flex gap-2" size="sm" onPress={() => router.push(`/booking?serviceId=${service.id}`)}>
             Book <ArrowRight size={14} />
           </Button>
         )}

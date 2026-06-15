@@ -93,7 +93,7 @@ export default function Navbar() {
               <Button variant="ghost" size="sm" onPress={() => router.push("/login")}>
                 Login
               </Button>
-              <Button className="bg-primary text-white hover:bg-primary-white" size="sm" onPress={() => router.push("/register")}>
+              <Button className="hidden md:flex gap-2" onPress={() => router.push("/register")}>
                 Register
               </Button>
             </div>
