@@ -70,7 +70,7 @@ export default function TimeSlotPicker({ selectedSlot, onSelect }: Props) {
         <Button isIconOnly variant="ghost" onPress={prevDay} size="sm">
           <ChevronLeft size={20} />
         </Button>
-        <h3 className="font-semibold text-lg">
+        <h3 className="font-semibold text-lg text-navy">
           {dayNames[currentDate.getDay()]}, {currentDate.getDate()} {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
         </h3>
         <Button isIconOnly variant="ghost" onPress={nextDay} size="sm">
@@ -82,13 +82,16 @@ export default function TimeSlotPicker({ selectedSlot, onSelect }: Props) {
         {quickDates.map((d) => {
           const ds = d.toISOString().split("T")[0];
           const isActive = ds === dateStr;
+          const isSunday = d.getDay() === 0;
           return (
             <button
               key={ds}
               onClick={() => setCurrentDate(new Date(d))}
               className={`min-w-[60px] flex-shrink-0 rounded-lg px-3 py-2 text-center transition-all ${
                 isActive
-                  ? "bg-purple-600 text-white shadow-sm"
+                  ? "bg-primary text-white shadow-sm"
+                  : isSunday
+                  ? "bg-gray-50 text-gray-300"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
@@ -99,7 +102,12 @@ export default function TimeSlotPicker({ selectedSlot, onSelect }: Props) {
         })}
       </div>
 
-      {loading ? (
+      {currentDate.getDay() === 0 ? (
+        <div className="text-center py-8 bg-amber-50 rounded-xl border border-amber-200">
+          <p className="text-amber-700 font-medium">Closed on Sundays</p>
+          <p className="text-sm text-amber-500 mt-1">Please select another day</p>
+        </div>
+      ) : loading ? (
         <div className="flex justify-center py-8"><Spinner /></div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -115,9 +123,9 @@ export default function TimeSlotPicker({ selectedSlot, onSelect }: Props) {
                 onClick={() => available && onSelect(slot)}
                 className={`rounded-xl border-2 p-3 text-center transition-all ${
                   isSelected
-                    ? "border-purple-500 bg-purple-50"
+                    ? "border-primary bg-orange-50"
                     : available
-                    ? "border-gray-200 hover:border-purple-300 hover:bg-purple-50"
+                    ? "border-gray-200 hover:border-primary/50 hover:bg-orange-50"
                     : "border-gray-100 bg-gray-50 opacity-50 cursor-not-allowed"
                 }`}
               >

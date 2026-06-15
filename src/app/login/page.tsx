@@ -2,7 +2,7 @@
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Card, TextField, Input, Label, Button, Link, Separator, Spinner } from "@heroui/react";
-import { Dog } from "lucide-react";
+import { PawPrint } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function LoginPage() {
@@ -39,13 +39,13 @@ function LoginContent() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md border border-gray-200">
         <Card.Content className="p-8">
           <div className="text-center mb-6">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 mb-4">
-              <Dog className="text-white" size={28} />
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary mb-4">
+              <PawPrint className="text-white" size={28} />
             </div>
-            <h1 className="text-2xl font-bold">Welcome Back</h1>
+            <h1 className="text-2xl font-bold text-navy">Welcome Back</h1>
             <p className="text-gray-500 text-sm">Sign in to manage your reservations</p>
           </div>
 
@@ -61,7 +61,7 @@ function LoginContent() {
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
-            <Button type="submit" variant="secondary" fullWidth isDisabled={loading}>
+            <Button type="submit" className="bg-primary text-white hover:bg-primary-dark w-full" isDisabled={loading}>
               {loading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
@@ -70,7 +70,7 @@ function LoginContent() {
 
           <p className="text-center text-sm text-gray-500">
             Don&apos;t have an account?{" "}
-            <Link href="/register" className="text-purple-600 font-medium">Sign up</Link>
+            <Link href="/register" className="text-primary font-medium">Sign up</Link>
           </p>
         </Card.Content>
       </Card>

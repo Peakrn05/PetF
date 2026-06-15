@@ -1,49 +1,58 @@
 "use client";
 import { Separator, Link } from "@heroui/react";
-import { Dog, Phone, Mail, MapPin } from "lucide-react";
+import { PawPrint, Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 py-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg p-1.5">
-                <Dog className="text-white" size={20} />
+    <footer className="bg-navy text-white">
+      <div className="max-w-7xl mx-auto px-6 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-2.5 mb-5">
+              <div className="bg-primary rounded-lg p-1.5">
+                <PawPrint className="text-white" size={20} />
               </div>
-              <span className="font-bold text-lg bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">
-                PawCare
-              </span>
+              <div>
+                <span className="font-bold text-lg block leading-tight">PawCare</span>
+                <span className="text-xs text-gray-400">Pet Grooming & Healthcare</span>
+              </div>
             </div>
-            <p className="text-gray-500 text-sm">
-              Professional pet grooming and healthcare services. We treat your pets like family.
+            <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+              Professional pet grooming and healthcare services in Bangkok. Certified staff, transparent pricing, and easy online booking.
             </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
-            <div className="flex flex-col gap-2">
-              <Link href="/services" className="text-sm text-gray-600 hover:text-purple-600">Our Services</Link>
-              <Link href="/booking" className="text-sm text-gray-600 hover:text-purple-600">Book Appointment</Link>
-              <Link href="/my-reservations" className="text-sm text-gray-600 hover:text-purple-600">My Reservations</Link>
+            <div className="mt-5 flex items-center gap-2 text-sm text-gray-400">
+              <Clock size={15} /> <span>Mon – Sat: 09:00 – 18:00</span>
             </div>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Contact Us</h3>
-            <div className="flex flex-col gap-3 text-sm text-gray-500">
-              <div className="flex items-center gap-2"><Phone size={16} /> <span>02-XXX-XXXX</span></div>
-              <div className="flex items-center gap-2"><Mail size={16} /> <span>contact@pawcare.co.th</span></div>
-              <div className="flex items-center gap-2"><MapPin size={16} /> <span>Bangkok, Thailand</span></div>
+            <h3 className="font-semibold mb-5 text-sm uppercase tracking-wider text-gray-300">Services</h3>
+            <div className="flex flex-col gap-3">
+              <Link href="/services" className="text-sm text-gray-400 hover:text-primary transition-colors">Haircut & Styling</Link>
+              <Link href="/services" className="text-sm text-gray-400 hover:text-primary transition-colors">Bath & Grooming</Link>
+              <Link href="/services" className="text-sm text-gray-400 hover:text-primary transition-colors">Vaccines & Health</Link>
+              <Link href="/booking" className="text-sm text-gray-400 hover:text-primary transition-colors">Book Appointment</Link>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-5 text-sm uppercase tracking-wider text-gray-300">Contact</h3>
+            <div className="flex flex-col gap-3 text-sm text-gray-400">
+              <div className="flex items-center gap-2.5"><Phone size={15} className="text-primary flex-shrink-0" /> <span>02-123-4567</span></div>
+              <div className="flex items-center gap-2.5"><Mail size={15} className="text-primary flex-shrink-0" /> <span>contact@pawcare.co.th</span></div>
+              <div className="flex items-start gap-2.5"><MapPin size={15} className="text-primary flex-shrink-0 mt-0.5" /> <span>Bangkok, Thailand</span></div>
             </div>
           </div>
         </div>
 
-        <Separator className="my-6" />
-        <p className="text-center text-gray-400 text-xs">
-          &copy; {new Date().getFullYear()} PawCare. All rights reserved.
-        </p>
+        <Separator className="my-8 border-gray-700" />
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-500">
+          <span>&copy; {new Date().getFullYear()} PawCare. All rights reserved.</span>
+          <div className="flex gap-5">
+            <Link href="#" className="text-gray-500 hover:text-primary text-xs">Privacy Policy</Link>
+            <Link href="#" className="text-gray-500 hover:text-primary text-xs">Terms of Service</Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

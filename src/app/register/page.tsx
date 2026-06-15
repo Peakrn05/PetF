@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card, TextField, Input, Label, Button, Link, Separator } from "@heroui/react";
-import { Dog } from "lucide-react";
+import { PawPrint } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function RegisterPage() {
@@ -33,13 +33,13 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-10">
-      <Card className="w-full max-w-md">
+      <Card className="w-full max-w-md border border-gray-200">
         <Card.Content className="p-8">
           <div className="text-center mb-6">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-500 mb-4">
-              <Dog className="text-white" size={28} />
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary mb-4">
+              <PawPrint className="text-white" size={28} />
             </div>
-            <h1 className="text-2xl font-bold">Create Account</h1>
+            <h1 className="text-2xl font-bold text-navy">Create Account</h1>
             <p className="text-gray-500 text-sm">Join PawCare to book pet services</p>
           </div>
 
@@ -67,7 +67,7 @@ export default function RegisterPage() {
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
-            <Button type="submit" variant="secondary" fullWidth isDisabled={loading}>
+            <Button type="submit" className="bg-primary text-white hover:bg-primary-dark w-full" isDisabled={loading}>
               {loading ? "Creating..." : "Create Account"}
             </Button>
           </form>
@@ -76,7 +76,7 @@ export default function RegisterPage() {
 
           <p className="text-center text-sm text-gray-500">
             Already have an account?{" "}
-            <Link href="/login" className="text-purple-600 font-medium">Sign in</Link>
+            <Link href="/login" className="text-primary font-medium">Sign in</Link>
           </p>
         </Card.Content>
       </Card>

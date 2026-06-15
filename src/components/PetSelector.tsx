@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Card, Button, TextField, Input, Label, Select, SelectTrigger, SelectValue, SelectPopover, ListBox, ListBoxItem, Separator } from "@heroui/react";
+import { Card, Button, TextField, Input, Label, Separator } from "@heroui/react";
 import { Plus, Dog, Cat } from "lucide-react";
 import api from "@/lib/api";
 import { Pet } from "@/lib/types";
@@ -55,14 +55,14 @@ export default function PetSelector({ selectedPet, onSelect }: Props) {
               onClick={() => onSelect(pet)}
               className={`flex items-center gap-3 p-4 rounded-xl border-2 transition-all text-left ${
                 selectedPet?.id === pet.id
-                  ? "border-purple-500 bg-purple-50"
-                  : "border-gray-200 hover:border-purple-300"
+                  ? "border-primary bg-orange-50"
+                  : "border-gray-200 hover:border-primary/50"
               }`}
             >
-              {pet.species === "DOG" ? <Dog size={24} className="text-purple-500" /> : <Cat size={24} className="text-pink-500" />}
+              {pet.species === "DOG" ? <Dog size={24} className="text-primary" /> : <Cat size={24} className="text-primary" />}
               <div>
-                <p className="font-semibold">{pet.name}</p>
-                <p className="text-sm text-gray-500">{pet.species} &bull; {pet.size} &bull; {pet.breed || "Mixed"}</p>
+                <p className="font-semibold text-navy">{pet.name}</p>
+                <p className="text-sm text-gray-500">{pet.species} - {pet.size} - {pet.breed || "Mixed"}</p>
               </div>
             </button>
           ))}
@@ -72,14 +72,14 @@ export default function PetSelector({ selectedPet, onSelect }: Props) {
       {!showForm ? (
         <button
           onClick={() => setShowForm(true)}
-          className="w-full flex items-center justify-center gap-2 rounded-xl border-2 border-dashed border-purple-300 p-4 text-purple-600 hover:bg-purple-50 transition"
+          className="w-full flex items-center justify-center gap-2 rounded-xl border-2 border-dashed border-primary/40 p-4 text-primary hover:bg-orange-50 transition"
         >
           <Plus size={18} /> Add New Pet
         </button>
       ) : (
-        <Card>
+        <Card className="border border-gray-200">
           <Card.Content className="p-4 space-y-4">
-            <h4 className="font-semibold">Add New Pet</h4>
+            <h4 className="font-semibold text-navy">Add New Pet</h4>
 
             <TextField value={form.name} onChange={(v) => setForm((p) => ({ ...p, name: v }))}>
               <Label>Pet Name</Label>
@@ -120,7 +120,7 @@ export default function PetSelector({ selectedPet, onSelect }: Props) {
             <Separator />
             <div className="flex gap-2 justify-end">
               <Button variant="ghost" onPress={() => setShowForm(false)}>Cancel</Button>
-              <Button variant="secondary" isDisabled={loading} onPress={handleAdd}>
+              <Button className="bg-primary text-white hover:bg-primary-dark" isDisabled={loading} onPress={handleAdd}>
                 {loading ? "Adding..." : "Add Pet"}
               </Button>
             </div>
