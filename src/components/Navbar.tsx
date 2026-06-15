@@ -67,12 +67,13 @@ export default function Navbar() {
             <div className="hidden md:block">
               <Dropdown>
                 <DropdownTrigger>
-                  <button className="flex items-center gap-2 rounded-full hover:bg-gray-100 px-3 py-1.5 transition">
+                  {/* FIX: Changed from <button> to <div> to avoid nested buttons in HeroUI */}
+                  <div className="flex items-center gap-2 rounded-full hover:bg-gray-100 px-3 py-1.5 transition cursor-pointer">
                     <Avatar className="w-7 h-7">
                       <Avatar.Fallback className="text-xs bg-primary text-white">{user.name.charAt(0).toUpperCase()}</Avatar.Fallback>
                     </Avatar>
                     <span className="text-sm font-medium text-navy">{user.name.split(" ")[0]}</span>
-                  </button>
+                  </div>
                 </DropdownTrigger>
                 <DropdownMenu>
                   <DropdownItem id="profile" className="opacity-100 pointer-events-none">
