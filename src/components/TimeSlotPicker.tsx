@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Button, Card, Spinner } from "@heroui/react";
+import { Button, Spinner } from "@heroui/react";
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import api from "@/lib/api";
 import { TimeSlot } from "@/lib/types";
@@ -65,20 +65,20 @@ export default function TimeSlotPicker({ selectedSlot, onSelect }: Props) {
   });
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
+    <div className="space-y-5">
+      <div className="flex items-center justify-between bg-surface rounded-xl p-3">
         <Button isIconOnly variant="ghost" onPress={prevDay} size="sm">
-          <ChevronLeft size={20} />
+          <ChevronLeft size={18} />
         </Button>
-        <h3 className="font-semibold text-lg text-navy">
+        <h3 className="font-semibold text-navy">
           {dayNames[currentDate.getDay()]}, {currentDate.getDate()} {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
         </h3>
         <Button isIconOnly variant="ghost" onPress={nextDay} size="sm">
-          <ChevronRight size={20} />
+          <ChevronRight size={18} />
         </Button>
       </div>
 
-      <div className="flex gap-2 overflow-x-auto pb-2">
+      <div className="flex gap-2 overflow-x-auto pb-1">
         {quickDates.map((d) => {
           const ds = d.toISOString().split("T")[0];
           const isActive = ds === dateStr;
@@ -87,28 +87,26 @@ export default function TimeSlotPicker({ selectedSlot, onSelect }: Props) {
             <button
               key={ds}
               onClick={() => setCurrentDate(new Date(d))}
-              className={`min-w-[60px] flex-shrink-0 rounded-lg px-3 py-2 text-center transition-all ${
-                isActive
-                  ? "bg-primary text-white shadow-sm"
-                  : isSunday
-                  ? "bg-gray-50 text-gray-300"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              className={`min-w-[58px] flex-shrink-0 rounded-xl px-3 py-2.5 text-center transition-all ${
+                isActive ? "bg-primary text-white shadow-sm" :
+                isSunday ? "bg-gray-50 text-gray-300 cursor-default" :
+                "bg-gray-50 text-gray-600 hover:bg-gray-100"
               }`}
             >
-              <div className="text-xs">{dayNames[d.getDay()]}</div>
-              <div className="font-bold">{d.getDate()}</div>
+              <div className="text-xs mb-0.5">{dayNames[d.getDay()]}</div>
+              <div className="font-bold text-sm">{d.getDate()}</div>
             </button>
           );
         })}
       </div>
 
       {currentDate.getDay() === 0 ? (
-        <div className="text-center py-8 bg-amber-50 rounded-xl border border-amber-200">
-          <p className="text-amber-700 font-medium">Closed on Sundays</p>
-          <p className="text-sm text-amber-500 mt-1">Please select another day</p>
+        <div className="text-center py-10 bg-amber-50 rounded-xl border border-amber-100">
+          <p className="text-amber-700 font-semibold">Closed on Sundays</p>
+          <p className="text-sm text-amber-500 mt-1">Please select a weekday</p>
         </div>
       ) : loading ? (
-        <div className="flex justify-center py-8"><Spinner /></div>
+        <div className="flex justify-center py-10"><Spinner /></div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {slots.map((slot) => {
@@ -121,17 +119,15 @@ export default function TimeSlotPicker({ selectedSlot, onSelect }: Props) {
                 key={slot.id}
                 disabled={!available}
                 onClick={() => available && onSelect(slot)}
-                className={`rounded-xl border-2 p-3 text-center transition-all ${
-                  isSelected
-                    ? "border-primary bg-orange-50"
-                    : available
-                    ? "border-gray-200 hover:border-primary/50 hover:bg-orange-50"
-                    : "border-gray-100 bg-gray-50 opacity-50 cursor-not-allowed"
+                className={`rounded-xl border p-3 text-center transition-all ${
+                  isSelected ? "border-primary bg-primary/5 shadow-sm" :
+                  available ? "border-gray-200 hover:border-primary hover:bg-primary/5" :
+                  "border-gray-100 bg-gray-50 opacity-40 cursor-not-allowed"
                 }`}
               >
                 <div className="flex items-center justify-center gap-1 mb-1">
-                  <Clock size={14} />
-                  <span className="font-semibold">{slot.startTime}</span>
+                  <Clock size={13} className={isSelected ? "text-primary" : "text-gray-400"} />
+                  <span className={`font-semibold text-sm ${isSelected ? "text-primary" : "text-navy"}`}>{slot.startTime}</span>
                 </div>
                 <span className={`text-xs ${
                   available ? (spotsLeft === 1 ? "text-amber-500" : "text-green-500") : "text-red-400"
