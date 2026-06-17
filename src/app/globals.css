@@ -1,4 +1,11 @@
-@import "tailwindcss";
+/*
+ * HeroUI v3 core stylesheet. THIS is what was missing — without it every
+ * <Button>/<Chip>/<TextField>/<Avatar> rendered as an unstyled element with no
+ * padding, no `whitespace-nowrap`, no centered flexbox and no variant colors,
+ * which produced all the edge-collision, icon-wrapping and off-center symptoms.
+ * It also pulls in Tailwind v4, so no separate `@import "tailwindcss"` is needed.
+ */
+@import "@heroui/styles/css";
 
 @theme {
   --color-primary: #0891b2;
