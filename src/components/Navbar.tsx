@@ -94,7 +94,7 @@ export default function Navbar() {
               <Button variant="ghost" size="sm" onPress={() => router.push("/login")}>
                 Login
               </Button>
-              <Button className="hidden md:flex gap-2" onPress={() => router.push("/register")}>
+              <Button variant="primary" className="hidden md:flex" onPress={() => router.push("/register")}>
                 Register
               </Button>
             </div>
@@ -126,7 +126,7 @@ export default function Navbar() {
             ) : (
               <>
                 <Button variant="ghost" size="sm" onPress={() => { router.push("/login"); setMobileOpen(false); }}>Login</Button>
-                <Button className="bg-primary text-white" size="sm" onPress={() => { router.push("/register"); setMobileOpen(false); }}>Register</Button>
+                <Button variant="primary" size="sm" onPress={() => { router.push("/register"); setMobileOpen(false); }}>Register</Button>
               </>
             )}
           </div>

@@ -16,3 +16,15 @@
   --color-navy-light: #1e293b;
   --color-surface: #f8fafc;
 }
+
+/*
+ * Map the PawCare brand teal onto HeroUI's accent token. Every
+ * variant="primary" surface (buttons, focus rings, selected states) now
+ * uses the brand color instead of HeroUI's default blue. The derived
+ * --accent-hover / --accent-foreground / --accent-soft tokens follow
+ * automatically via color-mix, so this single line rethemes the system.
+ * Declared unlayered so it overrides the layered default theme.
+ */
+:root {
+  --accent: #0891b2;
+}

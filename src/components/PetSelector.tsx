@@ -121,7 +121,7 @@ export default function PetSelector({ selectedPet, onSelect }: Props) {
           <Separator />
           <div className="flex gap-2 justify-end">
             <Button variant="ghost" onPress={() => setShowForm(false)}>Cancel</Button>
-            <Button className="bg-primary text-white hover:bg-primary-dark" isDisabled={loading} onPress={handleAdd}>
+            <Button variant="primary" isDisabled={loading} onPress={handleAdd}>
               {loading ? "Adding..." : "Add Pet"}
             </Button>
           </div>

@@ -100,7 +100,7 @@ function BookingContent() {
         <p className="text-gray-500 mb-1 text-lg">{selectedService?.name} for {selectedPet?.name}</p>
         <p className="text-gray-400 mb-10">{selectedSlot ? formatDate(selectedSlot.date) : ""} at {selectedSlot?.startTime}</p>
         <div className="flex gap-3 justify-center flex-wrap">
-          <Button className="bg-primary text-white hover:bg-primary-dark" onPress={() => router.push("/my-reservations")}>View My Bookings</Button>
+          <Button variant="primary" onPress={() => router.push("/my-reservations")}>View My Bookings</Button>
           <Button variant="outline" onPress={() => { setDone(false); goToStep(0); setSelectedService(null); setSelectedPet(null); setSelectedSlot(null); }}>Book Another</Button>
         </div>
       </div>
@@ -220,7 +220,7 @@ function BookingContent() {
 
           {step < 3 ? (
             <Button
-              className="bg-primary text-white hover:bg-primary-dark"
+              variant="primary"
               onPress={() => goToStep(step + 1)}
               isDisabled={
                 (step === 0 && !selectedService) ||

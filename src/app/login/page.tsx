@@ -65,7 +65,7 @@ function LoginContent() {
               </div>
             )}
 
-            <Button type="submit" className="bg-primary text-white hover:bg-primary-dark w-full mt-2" isDisabled={loading}>
+            <Button type="submit" variant="primary" className="w-full mt-2" isDisabled={loading}>
               {loading ? "Signing in..." : "Sign In"}
             </Button>
           </form>

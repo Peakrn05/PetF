@@ -30,7 +30,7 @@ export default function MyReservationsPage() {
             <h1 className="text-3xl font-bold text-navy">My Bookings</h1>
             <p className="text-gray-500 mt-1">Track and manage your appointments</p>
           </div>
-          <Button className="bg-primary text-white hover:bg-primary-dark" onPress={() => router.push("/booking")}>
+          <Button variant="primary" onPress={() => router.push("/booking")}>
             <CalendarPlus size={18} /> New Booking
           </Button>
         </div>
@@ -44,7 +44,7 @@ export default function MyReservationsPage() {
             </div>
             <p className="text-xl font-bold text-navy mb-2">No bookings yet</p>
             <p className="text-gray-500 mb-6 max-w-sm mx-auto">Book your first appointment and we will take great care of your pet</p>
-            <Button className="bg-primary text-white hover:bg-primary-dark" onPress={() => router.push("/booking")}>Book Now</Button>
+            <Button variant="primary" onPress={() => router.push("/booking")}>Book Now</Button>
           </div>
         ) : (
           <div className="grid gap-4">

@@ -38,11 +38,11 @@ export default function ServiceCard({ service, onSelect, selected }: Props) {
       <div className="px-6 pb-6 pt-4 border-t border-gray-50 flex justify-between items-center">
         <span className="text-2xl font-bold text-primary">{service.basePrice.toLocaleString()} <span className="text-sm font-normal text-gray-400">THB</span></span>
         {onSelect ? (
-          <Button className="bg-primary text-white hover:bg-primary-dark" size="sm" onPress={() => onSelect(service)}>
+          <Button variant="primary" size="sm" onPress={() => onSelect(service)}>
             Select <ArrowRight size={14} />
           </Button>
         ) : (
-          <Button className="bg-primary text-white hover:bg-primary-dark" size="sm" onPress={() => router.push(`/booking?serviceId=${service.id}`)}>
+          <Button variant="primary" size="sm" onPress={() => router.push(`/booking?serviceId=${service.id}`)}>
             Book <ArrowRight size={14} />
           </Button>
         )}

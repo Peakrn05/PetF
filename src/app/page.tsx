@@ -77,7 +77,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        <Button className="bg-primary text-white hover:bg-primary-dark" size="lg" onPress={() => router.push("/services")}>
+        <Button variant="primary" size="lg" onPress={() => router.push("/services")}>
           View All Services <ArrowRight size={18} />
         </Button>
       </section>
