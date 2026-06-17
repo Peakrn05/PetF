@@ -28,12 +28,17 @@ export const services: Service[] = [
 
 export function generateTimeSlots(dateStr: string) {
   const hours = ["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"];
+  const maxBookings = 3;
+  // Deterministic availability derived from the date + slot index. Stable across
+  // re-fetches (no Math.random flicker) while still showing a realistic mix of
+  // open / almost-full / full slots.
+  const daySeed = dateStr.split("-").reduce((sum, part) => sum + parseInt(part), 0);
   return hours.map((h, i) => ({
     id: `${dateStr}-${i}`,
     date: dateStr,
     startTime: h,
     endTime: `${String(parseInt(h) + 1).padStart(2, "0")}:00`,
-    maxBookings: 3,
-    currentBookings: Math.floor(Math.random() * 3),
+    maxBookings,
+    currentBookings: (daySeed + i * 2) % (maxBookings + 1),
   }));
 }

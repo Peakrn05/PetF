@@ -31,7 +31,7 @@ export default function Navbar() {
       {/* Top info bar */}
       <div className="bg-primary text-white text-xs py-1.5 px-6 text-center hidden sm:block">
         <span className="flex items-center justify-center gap-2">
-          <Phone size={12} /> Call us: 02-123-4567 &nbsp;|&nbsp; Mon–Sat 09:00–18:00 &nbsp;|&nbsp; Bangkok, Thailand
+          <Phone size={12} /> Call us: 02-123-4567 &nbsp;|&nbsp; Mon–Sat 09:00–18:00 &nbsp;|&nbsp; Bangkok, Thailand &nbsp;|&nbsp; <span className="opacity-80">Demo — bookings are simulated</span>
         </span>
       </div>
 

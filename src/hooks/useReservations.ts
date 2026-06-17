@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import api from "@/lib/api";
 import { Reservation } from "@/lib/types";
+import { loadDemoReservations, cancelDemoReservation } from "@/lib/demo";
 
 export function useReservations() {
   const [reservations, setReservations] = useState<Reservation[]>([]);
@@ -13,7 +14,8 @@ export function useReservations() {
       const res = await api.get("/reservations");
       setReservations(res.data);
     } catch {
-      // not logged in or error
+      // No backend (demo mode): show locally stored bookings
+      setReservations(loadDemoReservations());
     } finally {
       setLoading(false);
     }
@@ -35,9 +37,13 @@ export function useReservations() {
   };
 
   const cancelReservation = async (id: string) => {
-    const res = await api.put(`/reservations/${id}/cancel`);
-    setReservations((prev) => prev.map((r) => (r.id === id ? res.data : r)));
-    return res.data;
+    try {
+      const res = await api.put(`/reservations/${id}/cancel`);
+      setReservations((prev) => prev.map((r) => (r.id === id ? res.data : r)));
+    } catch {
+      // No backend (demo mode): cancel locally
+      setReservations(cancelDemoReservation(id));
+    }
   };
 
   return { reservations, loading, fetchReservations, createReservation, cancelReservation };

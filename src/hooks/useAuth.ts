@@ -13,6 +13,18 @@ interface AuthState {
   loadUser: () => void;
 }
 
+// True only when a real backend actually answered (e.g. 401). A bare network
+// failure (no backend) has no `response`, which is what triggers demo mode.
+function hasServerResponse(err: unknown): boolean {
+  return !!(err as { response?: unknown })?.response;
+}
+
+function persistSession(set: (s: Partial<AuthState>) => void, user: User, token: string) {
+  localStorage.setItem("token", token);
+  localStorage.setItem("user", JSON.stringify(user));
+  set({ user, token, loading: false });
+}
+
 export const useAuth = create<AuthState>((set) => ({
   user: null,
   token: null,
@@ -30,19 +42,29 @@ export const useAuth = create<AuthState>((set) => ({
   },
 
   login: async (email, password) => {
-    const res = await api.post("/auth/login", { email, password });
-    const { user, token } = res.data;
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
-    set({ user, token, loading: false });
+    try {
+      const res = await api.post("/auth/login", { email, password });
+      const { user, token } = res.data;
+      persistSession(set, user, token);
+    } catch (err) {
+      if (hasServerResponse(err)) throw err; // real backend rejected → surface error
+      // No backend (demo mode): simulate a session
+      const user: User = { id: "demo-user", email, name: email.split("@")[0] || "Guest", phone: "", role: "USER" };
+      persistSession(set, user, "demo-token");
+    }
   },
 
   register: async (name, email, phone, password) => {
-    const res = await api.post("/auth/register", { name, email, phone, password });
-    const { user, token } = res.data;
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
-    set({ user, token, loading: false });
+    try {
+      const res = await api.post("/auth/register", { name, email, phone, password });
+      const { user, token } = res.data;
+      persistSession(set, user, token);
+    } catch (err) {
+      if (hasServerResponse(err)) throw err; // real backend rejected → surface error
+      // No backend (demo mode): simulate a session
+      const user: User = { id: "demo-user", email, name: name || "Guest", phone, role: "USER" };
+      persistSession(set, user, "demo-token");
+    }
   },
 
   logout: () => {
